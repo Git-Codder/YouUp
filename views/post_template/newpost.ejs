@@ -5,27 +5,44 @@
         background-color: rgb(45, 169, 185);
     }
 </style>
+
+<div class="row">
+
+    <div class=" conntainer form-grop" style = "margin: 3% 35% 3% 5% ;" >
+        <a href="/alltag"><button class="btn btn-lg btn-primary btn-block">Go Back </button></a>
+    </div>
+
+
+    <div>
+        <h1 class="container" style="text-align: center; margin: 60% auto; color: darkorchid; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><strong><%= tag.name %> </strong></h1>
+    </div>
+    
+
+    <div class=" conntainer form-grop" style = "margin: 3% 5% 3% 35% ;" >
+        <a href="/alltag/<%= tag._id %>/post/new"><button class="btn btn-lg btn-primary btn-block">Add New Post</button></a>
+    </div>
+</div>
+
 <div class="row">
     <div class="container">
         <h1 style="color: lightseagreen; text-align: center; margin: 2% auto;">Create New Post</h1>
 
         <dev style="width:30%; margin:25px auto;">
 
-            <form action="/alltags/<%= tag._id %> " method="POST">
+            <form action="/alltag/<%= tag._id %> " method="POST">
                 <div class="form-group">
-                    <input class="form-control" type="text" name="name" placeholder="Name">
+                    <input class="form-control" type="text" name="post[name]" placeholder="Name">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="name" placeholder="Image Url">
+                    <input class="form-control" type="text" name="post[image]" placeholder="Image Url">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text " name="name" placeholder="Discription">
+                    <input class="form-control" type="text " name="post[description]" placeholder="Discription">
                 </div> 
                 <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block">Submit</button>
                 </div>  
             </form>
-            <a href="/alltags/<%= tag._id %> ">Go Back </a>
 
         </dev>
 
