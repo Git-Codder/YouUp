@@ -1,0 +1,12 @@
+<%- include('../partials/header'); -%> 
+<!-- <link rel="stylesheet" href="tag_template.css" > -->
+
+
+<h1 class="container" style="text-align: center; margin:2rem auto; color: darkorchid; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><strong><%= tag.name %> </strong></h1>
+
+
+<div class=" conntainer form-grop" style = "margin: 0 25% 0 25% ;" >
+    <a href="/alltag/<%= tag._id %> /post/new"><button class="btn btn-lg btn-success btn-block">Add New Post</button></a>
+</div>
+
+<%- include('../partials/footer'); -%> 

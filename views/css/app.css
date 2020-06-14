@@ -1,0 +1,19 @@
+.text{
+    text-align: center;
+    text-decoration: cornflowerblue;
+    text-shadow: dimgrey;
+    font-style: italic;
+    color: rgb(66, 41, 182);
+}
+
+.space{
+    margin: 10rem auto;
+}
+
+body{
+    background-color: rgb(20, 132, 160);
+}
+
+a:hover {
+    background-color: paleturquoise;
+  }

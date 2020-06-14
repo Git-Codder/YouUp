@@ -1,0 +1,9 @@
+.text {
+    color: cornflowerblue;
+}
+
+body{
+    background-color: rgb(19, 116, 107);
+    /* background-image: url("https://images.pexels.com/photos/2088205/pexels-photo-2088205.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");*/
+    /* background-image: url("https://images.pexels.com/photos/1210276/pexels-photo-1210276.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");  */
+}
