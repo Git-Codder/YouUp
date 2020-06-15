@@ -1,7 +1,7 @@
 var mongoose    = require("mongoose");
 
 //connecting mongodb using mongoose
-mongoose.connect("mongodb://localhost/YouUp_demo",{useNewUrlParser:true, useUnifiedTopology:true});
+mongoose.connect("mongodb://localhost/YouUp_user",{useNewUrlParser:true, useUnifiedTopology:true});
 
 
 //building schema for post

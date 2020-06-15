@@ -44,9 +44,14 @@
 
                 </ul>
                 <ul class="text nav navbar-nav navbar-right text" >
-
-                <li class="text nav-link"><a href="#">Sign Up<span>&ThickSpace;</span><i class="fa fa-user-plus"></i></a></li>
-                <li class="text nav-link"><a href="#">Login<span>&ThickSpace;</span><i class="fa fa-user"></i></a></li>
+                
+                <% if(!currentUser){ %> 
+                <li class="text nav-link"><a href="/user/login">Login<span>&ThickSpace;</span><i class="fa fa-user-plus"></i></a></li>
+                <li class="text nav-link"><a href="/user/register">Sign Up<span>&ThickSpace;</span><i class="fa fa-user"></i></a></li>
+                <% }else{  %>
+                    <li class="text nav-link"><a href="#"><%= currentUser.username %> <span>&ThickSpace;</span><i class="fas fa-user-shield "></i></a></li>
+                    <li class="text nav-link"><a href="/user/logout">Logout<span>&ThickSpace;</span><i class="fa fa-user"></i></a></li>
+                <% }; %> 
 
                 </ul> 
             </div>

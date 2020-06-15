@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     Tags = require("./module/tag"),
-    Posts = require("./module/post");
+    Posts = require("./module/post"),
+    Users = require("./module/user");
 
 var tags_data =
 [
@@ -76,19 +77,61 @@ var post_data = [
 ]
 
 
+var users_data = [
+    {
+        user_name   : "a_234",
+        name        : "Adityasdf",
+        image       : "https://images.unsplash.com/photo-1592079927431-3f8ced0dacc6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+        place       : "New York",
+        field       : "Technical",
+    },
+    {
+        user_name   : "a_23432",
+        name        : "Adityabgh",
+        image       : "https://images.unsplash.com/photo-1592079927431-3f8ced0dacc6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+        place       : "New York",
+        field       : "Technical",
+    },
+    {
+        user_name   : "a_2345we",
+        name        : "Adityawerte",
+        image       : "https://images.unsplash.com/photo-1592079927431-3f8ced0dacc6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+        place       : "New York",
+        field       : "Technical",
+    },
+    {
+        user_name   : "a_2342345",
+        name        : "Adityavnb",
+        image       : "https://images.unsplash.com/photo-1592079927431-3f8ced0dacc6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+        place       : "New York",
+        field       : "Technical",
+    }
+]
+
 //creating new tag with the help of our database and in each tag creating new post using post_data
 function seedDB(){
 
-    // Tags.remove({},function(err){
-    //     if(err)
-    //     {
-    //         console.log(err);
-    //     }
-    //     else
-    //     {
-    //         console.log("Tags removed");
-    //     }
-    // });
+    Tags.remove({},function(err){
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log("Tag removed");
+        }
+    });
+
+    Users.remove({},function(err){
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log("User removed");
+        }
+    });
 
     Posts.remove({},function(err){
         if(err)
@@ -97,48 +140,78 @@ function seedDB(){
         }
         else
         {
-            console.log("Posts removed");
+            console.log("Post removed");
             
         }
     });
+
+    
     
 
-    // tags_data.forEach(function(seed){
-    //     Tags.create(seed,function(err,tag){
-    //         if(err)
-    //         {
-    //             console.log(err);
-    //         }
-    //         else
-    //         {
-    //             console.log("New tag added..!");
-    //             post_data.forEach(function(post_seed){
-    //                 Posts.create(post_seed,function(err,post_data){
-    //                     if(err)
-    //                     {
-    //                         console.log(err);
-    //                     }
-    //                     else
-    //                     {
-    //                         console.log("New Post added..!");
-    //                         tag.post.push(post_data);
-    //                         tag.save();
-    //                         // tag.save(function(err,saved_data){
-    //                         //     if(err)
-    //                         //     {
-    //                         //         console.log(err);
-    //                         //     }
-    //                         //     else
-    //                         //     {
-    //                         //         console.log("work Done..!");
-    //                         //     }
-    //                         // });
-    //                     }
-    //                 });
-    //             });
-    //         }
-    //     });
-    // });
+    tags_data.forEach(function(seed){
+        Tags.create(seed,function(err,tag){
+            if(err)
+            {
+                console.log(err);
+            }
+            else
+            {
+                console.log("New tag added..!");
+                post_data.forEach(function(post_seed){
+                    Posts.create(post_seed,function(err,post_data){
+                        if(err)
+                        {
+                            console.log(err);
+                        }
+                        else
+                        {
+                            console.log("New Post added..!");
+                            tag.post.push(post_data);
+                            tag.save();
+                            // tag.save(function(err,saved_data){
+                            //     if(err)
+                            //     {
+                            //         console.log(err);
+                            //     }
+                            //     else
+                            //     {
+                            //         console.log("work Done..!");
+                            //     }
+                            // });
+                        }
+                    });
+                });
+            }
+        });
+    });
+
+    users_data.forEach(function(seed){
+        Users.create(seed,function(err,user){
+            if(err)
+            {
+                console.log(err);
+            }
+            else
+            {
+                console.log("New user added..!");
+                post_data.forEach(function(post_seed){
+                    Posts.create(post_seed,function(err,post_data){
+                        if(err)
+                        {
+                            console.log(err);
+                        }
+                        else
+                        {
+                            console.log("New Post added..!");
+                            user.post.push(post_data);
+                            user.save();
+                            
+                        }
+                    });
+                });
+            }
+        });
+    });
 };
 
 
