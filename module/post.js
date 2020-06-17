@@ -1,15 +1,26 @@
-var mongoose    = require("mongoose");
+var mongoose        = require("mongoose");
+    Users           = require("./user"),
+    Comments         = require("./comment");
 
 //connecting mongodb using mongoose
-mongoose.connect("mongodb://localhost/YouUp_demo",{useNewUrlParser:true, useUnifiedTopology:true});
+mongoose.connect("mongodb://localhost/YouUp1",{useNewUrlParser:true, useUnifiedTopology:true});
 
 
 //building schema for post
 post_schema = new mongoose.Schema({
     name        : String,
     image       : String,
-    description : String
+    tag         : String,
+    description : String,
+    author      : String,
     
+    comment : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref  : "Comments"
+        }
+    ]
+
 });
 
 //making module for accessing post data and exporting tha module
