@@ -1,7 +1,8 @@
 var mongoose = require('mongoose'),
     Tags = require("./module/tag"),
     Posts = require("./module/post"),
-    Users = require("./module/user");
+    Users = require("./module/user"),
+    Comments = require("./module/comment");
 
 var tags_data =
 [
@@ -38,6 +39,14 @@ var tags_data =
         name:"Business",
         image:"https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
 
+    },
+    {
+        name : "Astrology",
+        image :"https://images.unsplash.com/photo-1503751071777-d2918b21bbd9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+    },
+    {
+        name : "Travel",
+        image: "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
     }
    
 ]
@@ -145,7 +154,16 @@ function seedDB(){
         }
     });
 
-    
+    Comments.remove({},function(err){
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log("Comments removed");
+        }
+    });
     
 
     tags_data.forEach(function(seed){
@@ -157,61 +175,61 @@ function seedDB(){
             else
             {
                 console.log("New tag added..!");
-                post_data.forEach(function(post_seed){
-                    Posts.create(post_seed,function(err,post_data){
-                        if(err)
-                        {
-                            console.log(err);
-                        }
-                        else
-                        {
-                            console.log("New Post added..!");
-                            tag.post.push(post_data);
-                            tag.save();
-                            // tag.save(function(err,saved_data){
-                            //     if(err)
-                            //     {
-                            //         console.log(err);
-                            //     }
-                            //     else
-                            //     {
-                            //         console.log("work Done..!");
-                            //     }
-                            // });
-                        }
-                    });
-                });
+                // post_data.forEach(function(post_seed){
+                //     Posts.create(post_seed,function(err,post_data){
+                //         if(err)
+                //         {
+                //             console.log(err);
+                //         }
+                //         else
+                //         {
+                //             console.log("New Post added..!");
+                //             tag.post.push(post_data);
+                //             tag.save();
+                //             // tag.save(function(err,saved_data){
+                //             //     if(err)
+                //             //     {
+                //             //         console.log(err);
+                //             //     }
+                //             //     else
+                //             //     {
+                //             //         console.log("work Done..!");
+                //             //     }
+                //             // });
+                //         }
+                //     });
+                // });
             }
         });
     });
 
-    users_data.forEach(function(seed){
-        Users.create(seed,function(err,user){
-            if(err)
-            {
-                console.log(err);
-            }
-            else
-            {
-                console.log("New user added..!");
-                post_data.forEach(function(post_seed){
-                    Posts.create(post_seed,function(err,post_data){
-                        if(err)
-                        {
-                            console.log(err);
-                        }
-                        else
-                        {
-                            console.log("New Post added..!");
-                            user.post.push(post_data);
-                            user.save();
+    // // users_data.forEach(function(seed){
+    // //     Users_detail.create(seed,function(err,user_detail){
+    // //         if(err)
+    // //         {
+    // //             console.log(err);
+    // //         }
+    // //         else
+    // //         {
+    // //             console.log("New user added..!");
+    // //             post_data.forEach(function(post_seed){
+    // //                 Posts.create(post_seed,function(err,post_data){
+    // //                     if(err)
+    // //                     {
+    // //                         console.log(err);
+    // //                     }
+    // //                     else
+    // //                     {
+    // //                         console.log("New Post added..!");
+    // //                         user_detail.post.push(post_data);
+    // //                         user_detail.save();
                             
-                        }
-                    });
-                });
-            }
-        });
-    });
+    // //                     }
+    // //                 });
+    // //             });
+    // //         }
+    // //     });
+    // // });
 };
 
 

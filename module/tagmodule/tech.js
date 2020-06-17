@@ -10,21 +10,20 @@ mongoose.connect("mongodb://localhost/YouUp1",{useNewUrlParser:true, useUnifiedT
 tags_schema = new mongoose.Schema({
     name : String,
     image : String,
-    // author : {
-    //     id : {
-    //         type : mongoose.Schema.Types.ObjectId,
-    //         ref  : "Users"
-    //     },
-    //     username : String
-    // },
+    author : {
+        id : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref  : "Users"
+        },
+        username : String
+    },
     post : [
         {
-            id : String,
-            name : String,
-            image : String
+            type    : mongoose.Schema.Types.ObjectId,
+            ref     : "Posts"
         }
     ]
 });
 
 //making a model to accese database collection and exporting that module
-module.exports = mongoose.model("Tags",tags_schema);
+module.exports = mongoose.model("techTags",tags_schema);

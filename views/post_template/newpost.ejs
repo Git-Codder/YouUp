@@ -1,52 +1,96 @@
-<%- include('../partials/header'); -%>
-
+<%- include('../partials/header'); %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <style>
     body{
         background-color: rgb(45, 169, 185);
     }
-</style>
-
-<div class="row">
-
-    <div class=" conntainer form-grop" style = "margin: 3% 35% 3% 5% ;" >
-        <a href="/alltag"><button class="btn btn-lg btn-primary btn-block">Go Back </button></a>
-    </div>
-
-
-    <div>
-        <h1 class="container" style="text-align: center; margin: 60% auto; color: darkorchid; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><strong><%= tag.name %> </strong></h1>
-    </div>
     
+</style>
+ <script>
 
-    <div class=" conntainer form-grop" style = "margin: 3% 5% 3% 35% ;" >
-        <a href="/alltag/<%= tag._id %>/post/new"><button class="btn btn-lg btn-primary btn-block">Add New Post</button></a>
+     $('#tag_name').on('change', function(){
+            $('#tag_form').val($(this).val());
+        })
+
+        // init
+        $('#tag_name').change();
+    //  var taglist = [];
+    
+    // tag.forEach(function(name))
+
+    // function ChangetagList() {
+    //   var carList = document.getElementById("car");
+    //   var modelList = document.getElementById("carmodel");
+    //   var selCar = carList.options[carList.selectedIndex].value;
+    //   while (modelList.options.length) {
+    //     modelList.remove(0);
+    //   }
+    //   var cars = carsAndModels[selCar];
+    //   if (cars) {
+    //     var i;
+    //     for (i = 0; i < cars.length; i++) {
+    //       var car = new Option(cars[i], i);
+    //       modelList.options.add(car);
+    //     }
+    //   }
+    // }  
+    </script> 
+
+<div class="container" style="margin-top: 3rem;">
+
+        <div class="col-lg-4 col-xs-12">
+            <div class=" conntainer " style="float: left;">
+                <a href="/alltag"><button class="btn btn-lg btn-primary btn-block">Go Back </button></a>
+            </div>
+        
+        
+            <div>
+                <h1 class="container" style="text-align: center; color: darkorchid; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><strong><%= tag.name %> </strong></h1>
+            </div>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="container" style="width:50%;">
+            <h1 style="color: lightseagreen; text-align: center; margin: 2% auto;">Create New Post</h1>
+
+            <dev style=" margin:25px auto;">
+
+                <form action="/alltag/<%= tag._id %>" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="post[name]" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="post[image]" placeholder="Image Url">
+                    </div>
+                    <div class="form-group">
+                        <label for="Tag">Choose Tag : </label>
+                        <select id="tag_name">
+                            <option value="Tech">Tech</option>
+                            <option value="Education">Education</option>
+                            <option value="Art">Art</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Food">Food</option>
+                            <option value="Astrology">Astrology</option>
+                            <option value="Business">Business</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Science">Science</option>
+                        </select>
+                        <input type="text" id="tag_form" value="<%= tag.name %>" name="post[tag]" placeholder="Tag" active="desable">
+                        
+                    <!-- </div> -->
+                    <div class="form-group">
+                        <input class="form-control" type="text " name="post[description]" placeholder="Discription">
+                    </div> 
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                    </div>  
+                </form>
+
+            </dev>
+
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="container">
-        <h1 style="color: lightseagreen; text-align: center; margin: 2% auto;">Create New Post</h1>
-
-        <dev style="width:30%; margin:25px auto;">
-
-            <form action="/alltag/<%= tag._id %> " method="POST">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="post[name]" placeholder="Name">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="post[image]" placeholder="Image Url">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text " name="post[description]" placeholder="Discription">
-                </div> 
-                <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
-                </div>  
-            </form>
-
-        </dev>
-
-    </div>
-</div>
-
-<%- include('../partials/footer'); -%>
+<%- include('../partials/footer'); %>

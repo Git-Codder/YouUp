@@ -1,52 +1,62 @@
 <%- include('../partials/header'); -%> 
-<!-- <link rel="stylesheet" href="tag_template.css" > -->
 
 <style>
-    /* p{
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 200px;
-    } */
+    img{
+        width: 300px;
+        height:250px;
+    }
 </style>
-<div class="row">
 
-    <div class=" conntainer form-grop" style = "margin: 3% 35% 3% 5% ;" >
-        <a href="/alltag/<%= tag._id %> "><button class="btn btn-lg btn-success btn-block">Go Back </button></a>
-    </div>
-
-
-    <div>
-        <h1 class="container" style="text-align: center; margin: 60% auto; color: darkorchid; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><strong><%= tag.name %> </strong></h1>
-    </div>
-    
-
-    <div class=" conntainer form-grop" style = "margin: 3% 5% 3% 35% ;" >
-        <a href="/alltag/<%= tag._id %>/post/new"><button class="btn btn-lg btn-success btn-block">Add New Post</button></a>
-    </div>
-</div>
-
-
-<div class="row" style="display: flex; flex-wrap: wrap;">
-    <% tag.post.forEach(function(post){ %>
-        <div class="col-md-3 col-sm-6" style=" margin:1% 0% 1% 5.15%; ">
-
-            <div class="caption" style="text-align: center; color: dodgerblue;">
-                <h3> <%= post.name %>  </h3>
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1 style="margin-left: 2rem; color: darkorchid; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                Posts
+            </h1>
+            <hr>
+            <div class="col-lg-6 col-xs-12">
+                <p style="float: left;">
+                    <a href="/alltag/<%= tag._id %>/post/new"><button class="btn  btn-lg btn-success">Add New Post</button></a>
+                </p>
+                <p style="float: right;">
+                    <a href="/alltag"><button class="btn btn-lg btn-primary " style="text-align: center;">Go Back </button></a>
+                </p>
             </div>
-
-            <div class="thumbnail">
-                <img src="<%= post.image %>">
-            </div>
-            <div class="blockquote" style="text-align: center; color: dodgerblue;">
-                <p> <%= post.description %>  </p>
-            </div>
-            <div>
-                <a href="/alltag/tag/post/<%= post._id %> "><button class="btn btn-primary" style="text-align: center;padding: 1% 50% 1% 50%; margin:1% auto 1% auto;" >more</button></a>
-            </div>
-            
         </div>
-    <% }); %> 
+    </header>
+
+    <div class="row" style="display: flex; flex-wrap: wrap;">
+        <% if(tag.post){ %>
+            <% tag.post.forEach(function(post){ %>
+                <div class="col-md-3 col-sm-6" style=" margin:1% 0% 1% 5.15%; ">
+
+                    <div class="caption" style="text-align: center; color: dodgerblue;">
+                        <h3> <%= post.name %>  </h3>
+                    </div>
+
+                    <div class="thumbnail">
+                        <img src="<%= post.image %>">
+                    </div>
+                    <!-- <div class="blockquote" style=" color: dodgerblue; ">
+                        <p> <%= post.description %>  </p>
+                    </div> -->
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <a href="/alltag/tag/post/<%= post.id %> "><button class="btn btn-primary" style="text-align: center; margin:1% auto 1% auto;" >more</button></a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                            <p><em>Posted By : </em><%= post.author %> </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            <% }); %> 
+        <% } %> 
+    </div>
 </div>
 
 
