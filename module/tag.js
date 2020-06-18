@@ -21,7 +21,8 @@ tags_schema = new mongoose.Schema({
         {
             id : String,
             name : String,
-            image : String
+            image : String,
+            author : String
         }
     ]
 });

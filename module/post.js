@@ -13,6 +13,8 @@ post_schema = new mongoose.Schema({
     tag         : String,
     description : String,
     author      : String,
+    post_time   : String,
+    post_date   : String,
     
     comment : [
         {

@@ -17,6 +17,53 @@ router.get("/",function(req,res){
     
 });
 
+
+//making an post request for specific user  search by username
+router.post("/",isLoggedIn,function(req,res,body){
+    var user = req.body.user;
+    // console.log(Tags.find.({name : { $eq : tag}}));
+    
+    //finding using name in database
+    Users.find({username : { $eq : user}}).populate("post").exec(function(err,foundUsers){
+        // console.log(foundTags.length);
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            if(foundUsers.length==0)
+            {
+                res.render("errors/error_search.ejs");
+            }
+            else
+            {
+                // res.render("template/tag_template.ejs",{tag:foundTags[0]});
+                var user_id = foundUsers[0]._id;
+                Users.findById(user_id).populate("post").exec(function(err,foundUser){
+                    if(err)
+                    {
+                        console.log(err);
+                    }
+                    else
+                    {
+                        res.render("profile_template/profile",{user : foundUser});
+                    }
+                   
+                });
+                // console.log(tag);
+
+                //redirecting to another url
+                
+            }
+            // console.log(foundTags.length);
+        }
+    });
+    // res.render("template/tag_template");
+    
+});
+
+
 //making a get request for register on site
 router.get("/user/register",function(req,res){
     res.render("authentication/register");

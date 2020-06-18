@@ -71,6 +71,27 @@ function isLoggedIn(req,res,next){
 //calling seedDB.js file which contain initial data of the web
 // seed();
 
+//defining function to use in routs
+function set_time() {
+
+    var d = new Date();
+    var c_hour = d.getHours();
+    var c_min = d.getMinutes();
+    var c_sec = d.getSeconds();
+    var t = c_hour + ":" + c_min + ":" + c_sec;
+    return t;
+}
+
+function set_date() {
+    var d = new Date();
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var date = d. getDate();
+    var month = d. getMonth() ; // Since getMonth() returns month from 0-11 not 1-12.
+    var year = d. getFullYear();
+    var dateStr = months[month] + " " + date  + ", " + year;
+    return dateStr;
+}
+
 
 //using custom routs 
 app.use(authRouts);
