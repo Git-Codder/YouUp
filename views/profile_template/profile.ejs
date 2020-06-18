@@ -1,4 +1,133 @@
 <%- include('../partials/header') -%> 
-    
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU9FKSnHGDL-KooXlC7FHhwTrRY92hA-U&callback=initMap">
+    </script>
+
+<style>
+    img{
+        width: 300px;
+        height:250px;
+    }
+    #profile_image{
+        width: 400px;
+        height:300px;
+    }
+
+    /* Set the size of the div element that contains the map */
+    #map {
+    height: 400px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+    }
+
+</style>
+
+<script>
+
+var latitude =  0;
+var longitude = 0;
+function getCoordinates(address){
+  fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+address+'&key='+AIzaSyAU9FKSnHGDL-KooXlC7FHhwTrRY92hA-U)
+    .then(response => response.json())
+    .then(data => {
+      const latitude = data.results.geometry.location.lat;
+      const longitude = data.results.geometry.location.lng;
+      console.log({latitude, longitude});
+    })
+}
+
+getCoordinates(user.pincode)
+    // Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: latitude, lng: longitude};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 4, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+</script>
+
+<div class="">
+    <div class="row" style="margin: 2rem auto">
+
+        <div class="col-md-3">
+            
+                <p class="lead">Profile</p>
+                <div class="list-group">
+                    <li class="list-group-item lead">User-Name  :   <%= user.username %></li>
+                    <li class="list-group-item">Name    : <%= user.name %></li>
+                    <div class="thumbnail">
+                        <li class="list-group-item"><img id="profile_image" src="<%= user.image %> " alt=""></li>
+                    </div>
+                    <li class="list-group-item">Field   : <%= user.field %></li>
+                    <li class="list-group-item">Living Place    : <%= user.place %></li>
+                    <li class="list-group-item">Pin-Code    :  <%= user.pincode %></li>
+                </div>
+                <div>
+                    <h3>User <i class="fa fa-location-arrow" aria-hidden="true"></i></h3>
+                        <!--The div element for the map -->
+                        <div id="map"></div>
+                        <!-- Replace the value of the key parameter with your own API key. -->
+                        
+                </div>
+        </div>
+
+        <div class="col-lg-9" style="display: flex; flex-wrap: wrap;">
+            <div class="container">
+                <header class="jumbotron">
+                    <div class="container">
+                        <h1 style="margin-left: 2rem; color: darkorchid; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                            <% if(currentUser){ %> 
+                                All Posts Posted By <em>You</em>
+                        <% } else {%> 
+                            All Posts Posted By <em><%= user.username %> </em>
+                        <% } %> 
+                            
+                        </h1>
+                        <hr>
+                        <div class="col-lg-6 col-xs-12">
+                            <p style="float: left;">
+                                <a href="/alltag"><button class="btn  btn-lg btn-success">Add New Post</button></a>
+                            </p>
+                            <p style="float: right;">
+                                <a href="/alltag"><button class="btn btn-lg btn-primary " style="text-align: center;">Go Back </button></a>
+                            </p>
+                        </div>
+                    </div>
+                </header>
+            </div>
+                
+            <% if(user.post){ %>
+                <% user.post.forEach(function(post){ %>
+                    <div class="col-lg-3 col-md-4 col-xs-12" style=" margin:1% 0% 1% 5.15%; padding: 1.2rem 1.2rem; ">
+            
+                        <div class="caption" style="text-align: center; color: dodgerblue;">
+                            <h3> <%= post.name %>  </h3>
+                        </div>
+            
+                        <div class="thumbnail">
+                            <img src="<%= post.image %>">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div>
+                                    <a href="/alltag/tag/post/<%= post._id %> "><button class="btn btn-primary" style="text-align: center; margin:1% auto 1% auto;" >more</button></a>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div>
+                                <p><em>Posted By : </em><%= post.author.username %> </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                <% }); %> 
+            <% } %> 
+        </div>
+    </div>
+</div>
 
 <%- include('../partials/footer') -%> 

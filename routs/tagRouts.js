@@ -11,39 +11,6 @@ var express     = require('express'),
 //Tag routs
 //====================================
 
-//making an post request for specific tag using form search by name
-router.post("/",function(req,res,body){
-    var tag = req.body.tag;
-    // console.log(Tags.find.({name : { $eq : tag}}));
-    
-    //finding using name in database
-    Tags.find({name : { $eq : tag}}).populate("post").exec(function(err,foundTags){
-        // console.log(foundTags.length);
-        if(err)
-        {
-            console.log(err);
-        }
-        else
-        {
-            if(foundTags.length==0)
-            {
-                res.render("errors/error_search.ejs");
-            }
-            else
-            {
-                // res.render("template/tag_template.ejs",{tag:foundTags[0]});
-                var tag = foundTags[0]._id;
-                // console.log(tag);
-
-                //redirecting to another url
-                res.redirect(301,"/alltag/"+tag);
-            }
-            // console.log(foundTags.length);
-        }
-    });
-    // res.render("template/tag_template");
-    
-});
 
 //get request for view all tags
 router.get("/alltag",function(req,res){
@@ -104,17 +71,7 @@ router.get("/alltag",function(req,res){
 router.get("/alltag/:tag",function(req,res){
     
     Tags.findById(req.params.tag).populate("post").exec(function(err,foundTag){
-    //     if(err)
-    //     {
-    //         console.log(err);
-    //     }
-    //     else
-    //     {
-    //         // console.log(foundTag)
-    //         var tag_name = foundTag.name;
-    //         var tag_id  = foundTag._id;
-    //         // console.log(tag_name);
-
+    
             // Posts.find({tag : tag_name}).populate("comment").exec(function(err,foundTags){
             //     console.log(foundTags);
                 if(err)
@@ -122,23 +79,6 @@ router.get("/alltag/:tag",function(req,res){
                 else
                 {
                     
-                    // if(!foundTags)
-                    // {
-                    //     var tag = {
-                    //         post:foundTags,
-                    //         tag_id : foundTag._id
-                    //     };
-                    //     // res.render("template/tag_template",{tag : tag});
-                    // }
-                    // else
-                    // {   var tag = {
-                    //         post:foundTag,
-                    //         tag_id : foundTag._id
-                    //     };
-
-                    //     // res.render("template/tag_template",{tag:foundTag, tag_id : foundTag._id});
-                    // }
-                    // console.log(tag);
                     res.render("template/tag_template",{tag : foundTag});
                 }
             });
@@ -148,104 +88,135 @@ router.get("/alltag/:tag",function(req,res){
         
 });
 
-// //post request using form in specific tagpage and add database 
+// making a post request using form in specific tagpage to post something new and add database 
 router.post("/alltag/:tag",isLoggedIn,function(req,res){
     
-    var user_id = req.user._id;
-
-    // Posts.create(req.body.post,function(err,post_data){
-    //     if(err)
-    //     {
-    //         console.log(err);
-    //         res.redirect("/alltag");
-    //     }
-    //     else
-    //     {
-    //         post_data.author.id        = req.user._id;
-    //         post_data.author.username   = req.user.username;
-    //         post_data.save();
-    //         console.log("Added new Post");
-    //         // console.log(post_data);
-    //         req.user.post.push(post_data);
-    //         req.user.save();
-    //         // res.redirect("/alltag/" + foundUser.tag._id);
-    //     }
-    // });
-
-    // Tags.find({name : { $eq : req.body.post.tag}}).populate("post").exec(function(err,foundTag){
-    Tags.findById(req.params.tag,function(err,foundTag){
-        // console.log(foundTag);
-        if(err)
+    var user_id = req.params.tag;
+    Tags.find({name : { $eq : req.body.post.tag}},function(err,foundTags){
+        if(foundTags.length!=0)
         {
-            console.log(err);
-        }
-        else
-        {
-            // var  author_ = {
-            //     id        : req.user._id,
-            //     username  : req.user.username
-            // };
-            // var newPost = {
-            //     name : req.body.post.name,
-            //     image : req.body.post.image,
-            //     discription : req.body.post.discription,
-            //     tag   : req.body.post.tag,
-            //     author : req.user.username
-            // };
-            
-
-            Posts.create(req.body.post,function(err,post_data){
+            console.log("********************************");
+            user_id=foundTags[0]._id;
+            Tags.findById(user_id,function(err,foundTag){
+                // console.log(foundTag);
                 if(err)
                 {
                     console.log(err);
-                    res.redirect("/alltag");
+                    alert("Put Right Imformation");
+                    res.render("/alltag/"+req.param.tag);
+                    
                 }
                 else
                 {
-                    // post_data.author.id        = req.user._id;
-                    // post_data.author.username   = req.user.username;
-                    post_data.author = req.user.username;
-                    post_data.save();
-
-                    var post_obj = {
-                        id  :  post_data._id,
-                        name : post_data.name,
-                        image : post_data.image
-                    }
-                    console.log(post_data.author);
-                    foundTag.post.push(post_obj);
-                    foundTag.save();
-                    console.log("Added new Post");
-                    // console.log(foundTag);
-                    // console.log(post_data);
-                    req.user.post.push(post_data);
-                    
-                    req.user.save();
-                    console.log("********************************");
-                    // console.log(req.user);
-                    // console.log(foundTag);
-                    res.redirect("/alltag");
-
+                    // foundTag = foundTags[0];
+        
+                    Posts.create(req.body.post,function(err,post_data){
+                        if(err)
+                        {
+                            console.log(err);
+                            res.redirect("/alltag");
+                        }
+                        else
+                        {
+                            // post_data.author.id        = req.user._id;
+                            // post_data.author.username   = req.user.username;
+                            post_data.author = req.user.username;
+                            post_data.post_time = set_time();
+                            post_data.post_date = set_date();
+                            post_data.tag = foundTag.name;
+                        
+                            post_data.save();
+        
+                            var post_obj = {
+                                id  :  post_data._id,
+                                name : post_data.name,
+                                image : post_data.image,
+                                author : req.user.username
+                            }
+                            // console.log(post_data.author);
+                            foundTag.post.push(post_obj);
+                            foundTag.save();
+                            console.log("Added new Post");
+                            // console.log(foundTag);
+                            // console.log(post_data);
+                            req.user.post.push(post_data);
+                            
+                            req.user.save();
+                            // console.log("********************************");
+                            // console.log(req.user);
+                            // console.log(foundTag);
+                            res.redirect("/alltag");
+        
+                        }
+                    });
                 }
             });
-            // Posts.create(req.body.post,function(err,post_data){
-            //     if(err)
-            //     {
-            //         console.log(err);
-            //         res.redirect("/alltag");
-            //     }
-            //     else
-            //     {
-            //         // foundTag.post.id = post_data.id;
-            //         foundTag.post.push(post_data);
-            //         foundTag.save();
-            //         // console.log(foundTag);
-            //         res.redirect("/alltag/" + foundTag._id);
-            //     }
-            // });
+        
         }
+        else
+        {
+            Tags.findById(user_id,function(err,foundTag){
+                console.log(foundTag);
+                if(err)
+                {
+                    console.log(err);
+                    alert("Put Right Imformation");
+                    res.render("/alltag/"+req.param.tag);
+                    
+                }
+                else
+                {
+                    // foundTag = foundTags[0];
+        
+                    Posts.create(req.body.post,function(err,post_data){
+                        if(err)
+                        {
+                            console.log(err);
+                            res.redirect("/alltag");
+                        }
+                        else
+                        {
+                            // post_data.author.id        = req.user._id;
+                            // post_data.author.username   = req.user.username;
+                            post_data.author = req.user.username;
+                            post_data.post_time = set_time();
+                            post_data.post_date = set_date();
+                            post_data.tag = foundTag.name;
+                        
+                            post_data.save();
+        
+                            var post_obj = {
+                                id  :  post_data._id,
+                                name : post_data.name,
+                                image : post_data.image,
+                                author : req.user.username
+                            }
+                            // console.log(post_data.author);
+                            foundTag.post.push(post_obj);
+                            foundTag.save();
+                            console.log("Added new Post");
+                            // console.log(foundTag);
+                            // console.log(post_data);
+                            req.user.post.push(post_data);
+                            
+                            req.user.save();
+                            // console.log("********************************");
+                            // console.log(req.user);
+                            // console.log(foundTag);
+                            res.redirect("/alltag");
+        
+                        }
+                    });
+                }
+            });
+        
+        }
+        // console.log(foundTags[0]._id);
+        // console.log(foundTags);
     });
-
+    console.log("user id  " + user_id);
+    // Tags.find({name : { $eq : req.body.post.tag}}).populate("post").exec(function(err,foundTag){
+    
 });
 
 //function for checking a user is loged in or not
@@ -255,5 +226,28 @@ function isLoggedIn(req,res,next){
     }
     res.redirect("/user/login");
 };
+
+//defining function to use in routs
+function set_time() {
+
+    var d = new Date();
+    var c_hour = d.getHours();
+    var c_min = d.getMinutes();
+    var c_sec = d.getSeconds();
+    var t = c_hour + ":" + c_min + ":" + c_sec;
+    return t;
+}
+
+function set_date() {
+    var d = new Date();
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var date = d. getDate();
+    var month = d. getMonth() ; // Since getMonth() returns month from 0-11 not 1-12.
+    var year = d. getFullYear();
+    var dateStr = months[month] + " " + date  + ", " + year;
+    return dateStr;
+}
+
+// console.log(set_date());
 
 module.exports = router;

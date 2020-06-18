@@ -9,15 +9,10 @@ mongoose.connect("mongodb://localhost/YouUp1",{useNewUrlParser:true, useUnifiedT
 comment_schema = new mongoose.Schema({
     text        : String,
     author_name : String,
-    author      : String
-    // author      : {
-
-    //         id : {
-    //             type : mongoose.Schema.Types.ObjectId,
-    //             ref  : "Users"
-    //         },
-    //         username  : String
-    // }
+    author      : String,
+    post_time   : String,
+    post_date   : String,
+    author_image: String
 
 });
 

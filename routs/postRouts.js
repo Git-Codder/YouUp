@@ -30,13 +30,13 @@ router.get("/alltag/tag/post/:id",function(req,res){
     var post_id = req.params.id;
     // console.log(post_id);
     Posts.findById(post_id).populate("comment").exec(function(err,foundPost){
-        // console.log(foundTags);
+        // console.log(foundPost);
         if(err)
             console.log(err);
         else
         {
-            // console.log(foundPost);
-            res.render("post_template/post_temp",{post:foundPost});
+            // console.log(foundPost.comment[3].author_image);
+            res.render("post_template/post_temp",{post:foundPost,user : req.user});
         }
     });
 
@@ -55,6 +55,10 @@ router.post("/alltag/tag/post/:id",isLoggedIn,function(req,res){
             else
             {
                 comment_data.author     = req.user.username;
+                comment_data.post_time = set_time();
+                comment_data.post_date = set_date();
+                comment_data.author_image = req.user.image;
+
                 comment_data.save();
 
                 console.log("new comment added");
@@ -85,5 +89,26 @@ function isLoggedIn(req,res,next){
     }
     res.redirect("/user/login");
 };
+
+//defining function to use in routs
+function set_time() {
+
+    var d = new Date();
+    var c_hour = d.getHours();
+    var c_min = d.getMinutes();
+    var c_sec = d.getSeconds();
+    var t = c_hour + ":" + c_min + ":" + c_sec;
+    return t;
+}
+
+function set_date() {
+    var d = new Date();
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var date = d. getDate();
+    var month = d. getMonth() ; // Since getMonth() returns month from 0-11 not 1-12.
+    var year = d. getFullYear();
+    var dateStr = months[month] + " " + date  + ", " + year;
+    return dateStr;
+}
 
 module.exports = router;

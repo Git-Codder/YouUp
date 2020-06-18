@@ -13,12 +13,6 @@ var user_schema    = new mongoose.Schema({
         field   : String,
         place   : String,
         pincode : Number,
-        // tag   : [
-        //     {
-        //         type : mongoose.Schema.Types.ObjectId,
-        //         ref  : "Tags"
-        //     }
-        // ],
 
         post : [
             {
