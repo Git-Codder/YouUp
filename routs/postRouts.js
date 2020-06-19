@@ -75,7 +75,7 @@ router.post("/alltag/tag/post/:id/comment",isLoggedIn,function(req,res){
 
                 // console.log("user");
                 // console.log(req.user);
-                res.render("post_template/post_temp",{post : foundPost})
+                res.redirect("/alltag/tag/post/"+req.params.id);
             }
         });
     });
