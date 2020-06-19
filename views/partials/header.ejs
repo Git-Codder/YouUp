@@ -16,13 +16,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <div class="text">
-    <nav style="background-color: deeppink;  border: none;" class=" text navbar navbar-expand-lg navbar-light bg-light">
+    <nav style="background-color: deeppink;  border: none;" class=" text nav navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" id="brand" >YouUp</a>
-        <div style="border : none;" class="container">
+        <!-- <div style="border : none;" class="container"> -->
         
-            <button  class="navbar-toggler navbar-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+              </button>
             
             
             <div style="border: none;" class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -49,12 +49,13 @@
                 <li class="text nav-link"><a href="/user/login">Login<span>&ThickSpace;</span><i class="fa fa-user-plus"></i></a></li>
                 <li class="text nav-link"><a href="/user/register">Sign Up<span>&ThickSpace;</span><i class="fa fa-user"></i></a></li>
                 <% }else{  %>
-                    <li class="text nav-link"><a href="/user/profile"><%= currentUser.username %> <span>&ThickSpace;</span><i class="fas fa-user-shield "></i></a></li>
+                    <li class="text nav-link"><a href="/user/profile/<%= currentUser.username %>"><%= currentUser.username %> <span>&ThickSpace;</span><i class="fas fa-user-shield "></i></a></li>
                     <li class="text nav-link"><a href="/user/logout">Logout<span>&ThickSpace;</span><i class="fa fa-user"></i></a></li>
                 <% }; %> 
 
                 </ul> 
-            </div>
+            <!-- </div> -->
         </div> 
     </nav>
 </div>
+<meta name="viewport" content="width=device-width, initial-scale=1">

@@ -15,6 +15,9 @@ post_schema = new mongoose.Schema({
     author      : String,
     post_time   : String,
     post_date   : String,
+    like_count  : Number,
+
+    like_user   : Array,
     
     comment : [
         {

@@ -1,29 +1,111 @@
 <%- include('../partials/header'); -%> 
-<link rel="stylesheet" href="../css/app.css">
 <style>
-    body{
-        background-image: url("https://images.unsplash.com/photo-1533483058225-847263bb1f8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80");
-    }
+    body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
 </style>
-<div class="space ">
+
+<div class="about-section">
+    <h1>About Page</h1>
+    <p>YouUp</p>
+    <p>Build You with YouUp</p>
+  </div>
+  
+  <h2 style="text-align:center"></h2>
+  <div class="row">
+    <div class="column">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Jane" style="width:100%">
+        <div class="container">
+          <h2>Aditya Kumawat</h2>
+          <p class="title">CEO & Founder</p>
+          <p>Software Engineer <br> <em>Developer</em></p>
+          <p>Pursuing B.tech from Malviya Natinal Institute of Techonology Collage , Jaipur <br> From Year 2018 to 2022</p>
+          <p>kumawataditya1358@gmail.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+  
+  <div class="about-section ">
     <div class="container">
-        <p>
-            <h1 style="text-align: center; color: rgb(23, 114, 126);">
-                About
-            </h1>
-        </p>
         <p > 
             <h3 class="text space">We are so glad to see you here .
             This site is build for anyone and anyone is free to visit, use and find any information.
-            You can enhance your sckill using this site and can build up your knowlede.
+            You can enhance your skill using this site and can build up your knowlede.
             Please, Visit our site , take a while we sure you will get more info than you have.
-            This site is more based on user more user will come site will more develop .
-            If you want to contribute in site than you can do with giving your valuale feedback.</h3>
+            This site is more based on user,  more user will come site will more develope .
+            If you want to contribute in site than you can do with sharing <em>YouUp</em>.</h3>
         </p>
         <p >
             <h2 class="text space">Thanking you</h2>
         </p>
     </div>
-</div>
+</div> 
 
 <%- include('../partials/footer'); -%> 

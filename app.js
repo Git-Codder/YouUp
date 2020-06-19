@@ -2,6 +2,7 @@ var bodyParser  = require('body-parser'),
     request     = require("request"),
     express     = require("express"),
     passport    = require("passport"),
+    popup       = require("sweetalert"),
     passportLocal = require("passport-local"),
     app         = express(),
     mongoose    = require("mongoose"),
@@ -9,6 +10,7 @@ var bodyParser  = require('body-parser'),
     Tags        = require("./module/tag"),
     Posts       = require("./module/post"),
     Users       = require("./module/user");
+   
 
 var authRouts       = require('./routs/authRouts'),
     postRouts       = require('./routs/postRouts'),
@@ -75,7 +77,7 @@ function isLoggedIn(req,res,next){
 function set_time() {
 
     var d = new Date();
-    var c_hour = d.getHours();
+    var c_hour = d.getHours()%12 + 1;
     var c_min = d.getMinutes();
     var c_sec = d.getSeconds();
     var t = c_hour + ":" + c_min + ":" + c_sec;
