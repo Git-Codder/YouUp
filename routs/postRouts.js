@@ -164,11 +164,11 @@ router.get("/alltag/tag/post/:id/delete",isLoggedIn,function(req,res){
                     // console.log(foundIdx);
                     if(foundIdx!=foundTag.post.length)
                     {
-                        foundIdx = foundIdx-1;
+                        // foundIdx = foundIdx-1;
                         foundTag.post.splice(foundIdx,1);
                         foundTag.save();
                     }
-                    // console.log(foundTag);
+                    console.log(foundTag);
                     Posts.findByIdAndDelete(req.params.id).populate("comment").exec(function(err,deletedPost){
                         if(err)
                         {
