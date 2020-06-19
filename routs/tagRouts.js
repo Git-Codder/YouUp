@@ -56,7 +56,7 @@ router.get("/alltag",function(req,res){
 //                 req.user.save();
 //                 console.log("Added new Tag");
 //                 // console.log("found" + req.user);
-//                 // console.log("requser" + req.user.id);
+//                 // console.log("requser" + req.user._id);
 //                 // console.log("foundUser" + foundUser._id);
 //                 // console.log(post_data);
 //                 res.redirect("/");
@@ -124,6 +124,8 @@ router.post("/alltag/:tag",isLoggedIn,function(req,res){
                             post_data.post_time = set_time();
                             post_data.post_date = set_date();
                             post_data.tag = foundTag.name;
+                            post_data.like_count = 0;
+                            post_data.like_user.push(req.user._id);
                         
                             post_data.save();
         
@@ -182,9 +184,11 @@ router.post("/alltag/:tag",isLoggedIn,function(req,res){
                             post_data.post_time = set_time();
                             post_data.post_date = set_date();
                             post_data.tag = foundTag.name;
+                            post_data.like_count = 0;
+                            post_data.like_user.push(req.user._id);
                         
                             post_data.save();
-        
+                            // console.log(post_data);
                             var post_obj = {
                                 id  :  post_data._id,
                                 name : post_data.name,
@@ -196,7 +200,7 @@ router.post("/alltag/:tag",isLoggedIn,function(req,res){
                             foundTag.save();
                             console.log("Added new Post");
                             // console.log(foundTag);
-                            // console.log(post_data);
+                           
                             req.user.post.push(post_data);
                             
                             req.user.save();

@@ -10,14 +10,14 @@ var express     = require('express'),
 //=========================================
 
 //making get request to access user profile page 
-router.get("/user/profile", isLoggedIn ,function(req,res,err){
+router.get("/user/profile/:user", isLoggedIn ,function(req,res,err){
 
-    var user_id = req.user._id;
+    var user_name = req.params.user;
 
     // res.render("profile_template/profile",{user:req.user});
 
     // Users.find({}).populate("post").exec(function(err,req.user){
-        Users.findById(req.user.id).populate("post").exec(function(err,foundUser){
+        Users.findOne({username : req.params.user}).populate("post").exec(function(err,foundUser){
             // console.log(req.user.post);
             if(err)
             {

@@ -11,12 +11,12 @@
     <header class="jumbotron">
         <div class="container">
             <h1 style="margin-left: 2rem; color: darkorchid; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-               <%= tag.name %>  Posts
+                Posts
             </h1>
             <hr>
             <div class="col-lg-6 col-xs-12">
                 <p style="float: left;">
-                    <a href="/alltag/<%= tag._id %>/post/new"><button class="btn btn-success btn-lg">Add New Post</button></a>
+                    <button class="btn btn-warning btn-lg">Trending Posts</button>
                 </p>
                 <p style="float: right;">
                     <a href="/alltag"><button class="btn btn-lg btn-primary " style="text-align: center;">Go Back </button></a>
@@ -26,8 +26,8 @@
     </header>
 
     <div class="row" style="display: flex; flex-wrap: wrap;">
-        <% if(tag.post){ %>
-            <% tag.post.forEach(function(post){ %>
+        <% if(post){ %>
+            <% post.forEach(function(post){ %>
                 <div class="col-md-3 col-sm-6" style=" margin:1% 0% 1% 5.15%; ">
 
                     <div class="caption" style="text-align: center; margin-top:2rem ;color: dodgerblue;">
