@@ -62,7 +62,7 @@ router.post("/alltag/tag/post/:id/comment",isLoggedIn,function(req,res){
 
                 comment_data.save();
 
-                console.log("new comment added");
+                // console.log("new comment added");
                 // console.log(comment_data);
 
 
@@ -168,7 +168,7 @@ router.get("/alltag/tag/post/:id/delete",isLoggedIn,function(req,res){
                         foundTag.post.splice(foundIdx,1);
                         foundTag.save();
                     }
-                    console.log(foundTag);
+                    // console.log(foundTag);
                     Posts.findByIdAndDelete(req.params.id).populate("comment").exec(function(err,deletedPost){
                         if(err)
                         {
@@ -203,11 +203,30 @@ function isLoggedIn(req,res,next){
 //defining function to use in routs
 function set_time() {
 
+    var div ;
     var d = new Date();
-    var c_hour = d.getHours()%12 + 1;
+    var c_hour = d.getHours();
+    if(c_hour==12)
+    {
+        div = "PM";
+    }
+    else if(c_hour==24)
+    {
+        c_hour = 12;
+        div = "AM";
+    }
+    else if(c_hour>12 && c_hour<24)
+    {
+        c_hour = c_hour-12 ;
+        div = "PM";
+    }
+    else
+    {
+        div = "AM";
+    }
     var c_min = d.getMinutes();
     var c_sec = d.getSeconds();
-    var t = c_hour + ":" + c_min + ":" + c_sec;
+    var t = c_hour + ":" + c_min + ":" + c_sec + " "+div;
     return t;
 }
 // console.log(set_time());

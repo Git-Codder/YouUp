@@ -3,8 +3,9 @@ var mongoose                = require('mongoose'),
     Tags                    = require("./tag"),
     Posts                   = require("./post");
 
-mongoose.connect("mongodb://localhost/YouUp1",{useNewUrlParser:true, useUnifiedTopology:true});
-
+// mongoose.connect("mongodb://localhost/YouUp1",{useNewUrlParser:true, useUnifiedTopology:true});
+// mongoose.connect("mongodb+srv://aditya:A7232895082K&@#@*(%)*@youupdata.zew8k.mongodb.net/YouUp_data?retryWrites=true&w=majority",{useNewUrlParser:true, useUnifiedTopology:true});
+mongoose.connect("mongodb+srv://aditya:iamtheaditya@youup.zew8k.mongodb.net/YouUp?retryWrites=true&w=majority",{useNewUrlParser:true, useUnifiedTopology:true});
 var user_schema    = new mongoose.Schema({
         username : String,
         password  : String,
