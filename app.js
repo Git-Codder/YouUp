@@ -76,11 +76,30 @@ function isLoggedIn(req,res,next){
 //defining function to use in routs
 function set_time() {
 
+    var div ;
     var d = new Date();
-    var c_hour = d.getHours()%12 + 1;
+    var c_hour = d.getHours();
+    if(c_hour==12)
+    {
+        div = "PM";
+    }
+    else if(c_hour==24)
+    {
+        c_hour = 12;
+        div = "AM";
+    }
+    else if(c_hour>12 && c_hour<24)
+    {
+        c_hour = c_hour-12 ;
+        div = "PM";
+    }
+    else
+    {
+        div = "AM";
+    }
     var c_min = d.getMinutes();
     var c_sec = d.getSeconds();
-    var t = c_hour + ":" + c_min + ":" + c_sec;
+    var t = c_hour + ":" + c_min + ":" + c_sec + " "+div;
     return t;
 }
 
