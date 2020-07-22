@@ -25,6 +25,7 @@ router.get("/user/profile/:user", isLoggedIn ,function(req,res,err){
             }
             else
             {
+                // console.log(foundUser);
                 res.render("profile_template/profile",{user:foundUser});
                 // res.render("/");
             }

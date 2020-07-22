@@ -1,11 +1,14 @@
 var express     = require('express'),
     router      = express.Router(),
+    multer       = require("multer"),
+    fs          = require('fs'),
     Tags        = require("../module/tag"),
     Posts       = require("../module/post"),
     Users       = require("../module/user_detail"),
     Users_detail = require("../module/user");
 
-
+//specifying destination for image
+var upload = multer({ dest: 'uploads/' });
 
 //====================================
 //Tag routs
@@ -89,8 +92,15 @@ router.get("/alltag/:tag",function(req,res){
 });
 
 // making a post request using form in specific tagpage to post something new and add database 
-router.post("/alltag/:tag",isLoggedIn,function(req,res){
+router.post("/alltag/:tag",isLoggedIn,upload.single("post_image"),function(req,res){
     
+    var data_ = fs.readFileSync(req.file.path);
+    var contentType_ = req.file.mimetype;
+
+    // console.log(req.file);
+    // console.log(data_);
+    // console.log(contentType_);
+
     var user_id = req.params.tag;
     Tags.find({name : { $eq : req.body.post.tag}},function(err,foundTags){
         if(foundTags.length!=0)
@@ -126,18 +136,26 @@ router.post("/alltag/:tag",isLoggedIn,function(req,res){
                             post_data.tag = foundTag.name;
                             post_data.like_count = 0;
                             post_data.like_user.push(req.user._id);
+                            post_data.image.data = data_;
+                            post_data.image.contentType = contentType_;
+                            post_data.index = 0;
                         
                             post_data.save();
-        
+                            // console.log("#######################################");
                             var post_obj = {
                                 id  :  post_data._id,
                                 name : post_data.name,
-                                image : post_data.image,
+                                // image : post_data.image,
+                                image  : {
+                                            data    : data_,
+                                            contentType : contentType_
+                                        },
                                 author : req.user.username
                             }
                             // console.log(post_data.author);
                             foundTag.post.push(post_obj);
                             foundTag.save();
+                            // console.log("********************************");
                             // console.log("Added new Post");
                             // console.log(foundTag);
                             // console.log(post_data);
@@ -158,7 +176,7 @@ router.post("/alltag/:tag",isLoggedIn,function(req,res){
         else
         {
             Tags.findById(user_id,function(err,foundTag){
-                console.log(foundTag);
+                // console.log(foundTag);
                 if(err)
                 {
                     console.log(err);
@@ -186,13 +204,20 @@ router.post("/alltag/:tag",isLoggedIn,function(req,res){
                             post_data.tag = foundTag.name;
                             post_data.like_count = 0;
                             post_data.like_user.push(req.user._id);
-                        
+                            post_data.image.data = data_;
+                            post_data.image.contentType = contentType_;
+                            post_data.index = 0;
+
                             post_data.save();
                             // console.log(post_data);
                             var post_obj = {
                                 id  :  post_data._id,
                                 name : post_data.name,
-                                image : post_data.image,
+                                // image : post_data.image,
+                                image  : {
+                                            data    : data_,
+                                            contentType : contentType_
+                                        },
                                 author : req.user.username
                             }
                             // console.log(post_data.author);

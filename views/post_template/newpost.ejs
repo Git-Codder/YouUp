@@ -56,12 +56,12 @@
 
             <dev style=" margin:25px auto;">
 
-                <form action="/alltag/<%= tag._id %>" method="POST">
+                <form action="/alltag/<%= tag._id %>" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <input class="form-control" type="text" name="post[name]" placeholder="Name">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="post[image]" placeholder="Image Url">
+                        <input id="input-files" class="form-control-file border" type="file" name="post_image" placeholder="Image">
                     </div>
                     <div class="form-group">
                         <label for="Tag">Choose Tag : </label>

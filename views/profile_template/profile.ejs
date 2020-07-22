@@ -59,7 +59,8 @@ function initMap() {
                     <li class="list-group-item lead">User-Name  :   <%= user.username %></li>
                     <li class="list-group-item">Name    : <%= user.name %></li>
                     <div class="thumbnail">
-                        <li class="list-group-item"><img id="profile_image" src="<%= user.image %> " alt=""></li>
+                        <li class="list-group-item"> <img id="profile_image" src="data:uploads/<%=user.image.contentType%>;base64, 
+                     <%=user.image.data.toString('base64')%>"></li>
                     </div>
                     <li class="list-group-item">Field   : <%= user.field %></li>
                     <li class="list-group-item">Living Place    : <%= user.place %></li>
@@ -108,7 +109,8 @@ function initMap() {
                         </div>
             
                         <div class="thumbnail">
-                            <img src="<%= post.image %>">
+                            <img src="data:uploads/<%=post.image.contentType%>;base64, 
+                                <%=post.image.data.toString('base64')%>">
                         </div>
                         <div class="row">
                             <div class="col">
@@ -118,7 +120,7 @@ function initMap() {
                             </div>
                             <div class="col">
                                 <div>
-                                <p><em>Posted By : </em><%= post.author.username %> </p>
+                                <p><em>Posted By : </em><%= post.author%> </p>
                                 </div>
                             </div>
                         </div>

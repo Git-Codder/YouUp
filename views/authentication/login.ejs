@@ -5,13 +5,20 @@
         background-image: url('https://images.unsplash.com/photo-1548217395-6c6095abb49c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
         background-size: cover;
     }
+    .suggest-artist__link:hover 
+    {
+        color:green;
+    }
+  .msg{
+        color: rgb(218, 105, 161);
+  }
 </style>
 
 
 
 <div class="row">
     <div class="container">
-        <h1 style="color: lightseagreen; text-align: center; margin: 2% auto;">Login Up</h1>
+        <h1 style="color: lightseagreen; text-align: center; margin: 2% auto;">Login</h1>
 
         <div style="width:50%; margin:2rem auto;">
 
@@ -27,8 +34,15 @@
                 </div>  
             </form>
 
-        </div>
+            <div style="margin:1.2rem auto;">
+                <h3 class="msg">Don't have account <i class="fa fa-user-circle" aria-hidden="true"></i> </h3>
+                <div class="suggest-artist">
+                    <h2><a href="/user/register" class="suggest-artist__link" style="color: mediumaquamarine;">Sign Up</a></h2>
+                </div>
+            </div>
 
+        </div>
+        
     </div>
 </div>
 	
