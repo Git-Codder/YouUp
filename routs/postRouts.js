@@ -171,24 +171,24 @@ router.get("/alltag/tag/post/:id/delete",isLoggedIn,function(req,res){
                     });
                     // console.log(i);
                     // console.log(foundIdx);
-                    if(foundIdx!=foundTag.post.length)
+                    if(i!=foundTag.post.length)
                     {
                         // foundIdx = foundIdx-1;
-                        foundTag.post.splice(foundIdx,1);
+                        foundTag.post.splice(i,1);
                         foundTag.save();
                     }
                     // console.log(foundTag);
-//                     Posts.findByIdAndDelete(req.params.id).populate("comment").exec(function(err,deletedPost){
-//                         if(err)
-//                         {
-//                             throw err;
-//                         }
-//                         else
-//                         {
-//                             // console.log("deleted Post : "+ deletedPost);
-//                             res.redirect("/alltag/"+foundTag._id);
-//                         }
-//                     });
+                    Posts.findByIdAndDelete(req.params.id).populate("comment").exec(function(err,deletedPost){
+                        if(err)
+                        {
+                            throw err;
+                        }
+                        else
+                        {
+                            // console.log("deleted Post : "+ deletedPost);
+                            res.redirect("/alltag/"+foundTag._id);
+                        }
+                    });
                 });
             }
             else
