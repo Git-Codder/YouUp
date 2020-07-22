@@ -178,17 +178,17 @@ router.get("/alltag/tag/post/:id/delete",isLoggedIn,function(req,res){
                         foundTag.save();
                     }
                     // console.log(foundTag);
-                    Posts.findByIdAndDelete(req.params.id).populate("comment").exec(function(err,deletedPost){
-                        if(err)
-                        {
-                            throw err;
-                        }
-                        else
-                        {
-                            // console.log("deleted Post : "+ deletedPost);
-                            res.redirect("/alltag/"+foundTag._id);
-                        }
-                    });
+//                     Posts.findByIdAndDelete(req.params.id).populate("comment").exec(function(err,deletedPost){
+//                         if(err)
+//                         {
+//                             throw err;
+//                         }
+//                         else
+//                         {
+//                             // console.log("deleted Post : "+ deletedPost);
+//                             res.redirect("/alltag/"+foundTag._id);
+//                         }
+//                     });
                 });
             }
             else
