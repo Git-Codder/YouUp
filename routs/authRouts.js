@@ -1,11 +1,15 @@
 var express     = require('express'),
     router      = express.Router(),
+    fs          = require('fs'),
     bodyParser  = require('body-parser'),
     passport    = require("passport"),
+    multer       = require("multer"),
     Tags        = require("../module/tag"),
     Posts       = require("../module/post"),
-    Users = require("../module/user");
+    Users = require("../module/user");   
 
+//specifying destination for image
+var upload = multer({ dest: 'uploads/' });
 
 //=============================
 //Auth Rout
@@ -70,11 +74,14 @@ router.get("/user/register",function(req,res){
 }); 
 
 //making a post request to register in user_detail module database in web application
-router.post("/user/register",function(req,res){
+router.post("/user/register",upload.single("image"),function(req,res){
 
     var newUser =  {
         username : req.body.username,
-        image    : req.body.image,
+        image  : {
+                data    : fs.readFileSync(req.file.path),
+                contentType : req.file.mimetype
+        },
         name     : req.body.name,
         field    : req.body.field,
         place    :  req.body.place,
@@ -95,6 +102,7 @@ router.post("/user/register",function(req,res){
         }
 
     });
+
 });
 
 //making a get request for login on site

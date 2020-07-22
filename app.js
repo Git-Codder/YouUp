@@ -1,6 +1,10 @@
 var bodyParser  = require('body-parser'),
     request     = require("request"),
     express     = require("express"),
+    util        = require("util"),
+    fs          = require('fs'),
+    multer       = require("multer"),
+    GridFsStorage = require("multer-gridfs-storage"),
     passport    = require("passport"),
     popup       = require("sweetalert"),
     passportLocal = require("passport-local"),
@@ -20,6 +24,9 @@ var authRouts       = require('./routs/authRouts'),
 
 passport.use(Users.createStrategy());
 
+//connecting database
+// mongoose.connect("mongodb://localhost/YouUp_6",{useNewUrlParser:true, useUnifiedTopology:true});
+mongoose.connect("mongodb+srv://aditya:iamtheaditya@youup.zew8k.mongodb.net/YouUp?retryWrites=true&w=majority",{useNewUrlParser:true, useUnifiedTopology:true});
 
 //defining directories as public to use them in web 
 app.use(express.static("public"));
@@ -45,6 +52,7 @@ app.use(require("express-session")({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.json());
 
 passport.use(new passportLocal(Users.authenticate()));
 
@@ -55,7 +63,7 @@ passport.deserializeUser(Users.deserializeUser());
 //setting view engin as a ejs formate file 
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended : true}));
- 
+
 //making a middleware to pass current loged in user info
 app.use(function(req,res,next){
     res.locals.currentUser = req.user;
@@ -69,6 +77,7 @@ function isLoggedIn(req,res,next){
     }
     res.redirect("/user/login");
 };
+
 
 //calling seedDB.js file which contain initial data of the web
 // seed();

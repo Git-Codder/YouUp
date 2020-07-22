@@ -87,7 +87,8 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class= "size" src="<%= post.image %> " alt="">
+        <img class= "size" src="data:uploads/<%=post.image.contentType%>;base64, 
+        <%=post.image.data.toString('base64')%>" alt="">
 
         <hr>
 
@@ -129,7 +130,8 @@
             
             <div class="media mt-4" >
               <% if(post.comment[i].author_image!=null){ %>
-              <img class="d-flex mr-3 rounded-circle" style="width:50px; height : 50px;" src="<%= post.comment[i].author_image %>" >
+              <img class="d-flex mr-3 rounded-circle" style="width:50px; height : 50px;" src="data:uploads/<%=post.comment[i].author_image.contentType%>;base64, 
+              <%=post.comment[i].author_image.data.toString('base64')%>"> >
               <% }else{ %>
                 <img class="d-flex mr-3 rounded-circle"  src = "http://placehold.it/50x50" >
              <% } %> 

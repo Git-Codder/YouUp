@@ -1,12 +1,16 @@
 var express     = require('express'),
     router      = express.Router(),
     Tags        = require("../module/tag"),
+    multer       = require("multer"),
+    fs          = require('fs'),
     Posts       = require("../module/post"),
     Users_detail= require("../module/user_detail"),
     Users          = require("../module/user"),
     Comments     = require("../module/comment"),
     popup       = require("sweetalert");
 
+//specifying destination for image
+var upload = multer({ dest: 'uploads/' });
 
 //=================================
 //Post Routs
@@ -31,12 +35,14 @@ router.get("/alltag/tag/post/:id",isLoggedIn,function(req,res){
     var post_id = req.params.id;
     // console.log(post_id);
     Posts.findById(post_id).populate("comment").exec(function(err,foundPost){
+        // console.log("foundPost is folowing.................");
         // console.log(foundPost);
         if(err)
             console.log(err);
         else
         {
-            // console.log(foundPost.comment[3].author_image);
+            // console.log(req.user.image);
+            // console.log(foundPost.comment[1].contentType);
             res.render("post_template/post_temp",{post:foundPost,user : req.user});
         }
     });
@@ -51,14 +57,17 @@ router.post("/alltag/tag/post/:id/comment",isLoggedIn,function(req,res){
             if(err)
             {
                 console.log(err);
-                res.redirect("/alltag/tag/post/"+ req.params.id + "comment");
+                res.redirect("/alltag/tag/post/"+ req.params.id + "/comment");
             }
             else
             {
                 comment_data.author    = req.user.username;
                 comment_data.post_time = set_time();
                 comment_data.post_date = set_date();
-                comment_data.author_image = req.user.image;
+                comment_data.author_image.data = req.user.image.data;
+                comment_data.author_image.contentType = req.user.image.contentType;
+
+                // console.log(comment_data.author_image);
 
                 comment_data.save();
 
@@ -118,7 +127,7 @@ router.get("/alltag/tag/post/:id/like",isLoggedIn,function(req,res){
 
 //making a get request to show tranding posts according like
 router.get("/trending",function(req,res){
-    Posts.find().sort("-like_count" ).exec(function(err,post){
+    Posts.find({index : 0}).sort({like_count : 1} ).limit(3).exec(function(err,post){
         if(err)
         {
             console.log(err);

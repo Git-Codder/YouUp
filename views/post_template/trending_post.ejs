@@ -35,7 +35,8 @@
                     </div>
 
                     <div class="thumbnail">
-                        <img src="<%= post.image %>">
+                        <img src="data:uploads/<%=post.image.contentType%>;base64, 
+                        <%=post.image.data.toString('base64')%>">
                     </div>
                     <!-- <div class="blockquote" style=" color: dodgerblue; ">
                         <p> <%= post.description %>  </p>

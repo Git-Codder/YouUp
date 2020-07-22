@@ -14,7 +14,7 @@
 
         <div style="width:50%; margin:2rem auto;">
 
-            <form action="/user/register" method="POST">
+            <form action="/user/register" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <input class="form-control" type="text" name="username" placeholder="Usermame">
                 </div>
@@ -22,7 +22,7 @@
                     <input class="form-control" type="text" name="name" placeholder="Name">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="image" placeholder="Image">
+                    <input id="input-files" class="form-control-file border"  type="file" name="image" placeholder="Image">
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="text" name="field" placeholder="Field">
