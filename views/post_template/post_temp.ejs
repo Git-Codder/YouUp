@@ -137,7 +137,9 @@
              <% } %> 
               <div class="media-body">
                 <h5 class="mt-0"><%= comment.author %> </h5>
-                <p><%= comment.text %> </p>
+                <div style="overflow-wrap: break-word;">
+                  <p><%= comment.text %> </p>
+                 </div>
                 <hr>
                 <div class="media mt-4 fa-pull-right" >
                   <p>Commented on <%= post.comment[i].post_date %>  at <%= post.comment[i].post_time %> </p>
