@@ -131,6 +131,6 @@ app.use(userRouts);
 app.use(otherRouts);
 
 //setting env for running application
-// app.listen(process.env.PORT ,process.env.IP, function () {
-//     console.log("App listening on port 3000!");
-// });
+app.listen(process.env.PORT ,process.env.IP, function () {
+    console.log("App listening on port 3000!");
+});
