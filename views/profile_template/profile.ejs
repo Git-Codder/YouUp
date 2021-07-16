@@ -49,10 +49,10 @@ function initMap() {
 }
 </script>
 
-<div class="">
+<div class="" style="margin-top: 5rem;">
     <div class="row" style="margin: 2rem auto">
 
-        <div class="col-md-3">
+        <div class="col-sm-3">
             
                 <p class="lead">Profile</p>
                 <div class="list-group">
@@ -75,11 +75,11 @@ function initMap() {
                 </div>
         </div>
 
-        <div class="col-lg-9" style="display: flex; flex-wrap: wrap;">
-            <div class="container">
+        <div class="col-lg-9">
+            <!-- <div class="container"> -->
                 <header class="jumbotron">
                     <div class="container">
-                        <h1 style="margin-left: 2rem; color: darkorchid; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                        <h1 style="margin-left: 1rem; color: darkorchid; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
                             <% if(currentUser){ %> 
                                 All Posts Posted By <em>You</em>
                         <% } else {%> 
@@ -87,8 +87,8 @@ function initMap() {
                         <% } %> 
                             
                         </h1>
-                        <hr>
-                        <div class="col-lg-6 col-xs-12">
+                        
+                        <div class="col-lg-4 col-xs-12">
                             <p style="float: left;">
                                 <a href="/alltag"><button class="btn  btn-lg btn-success">Add New Post</button></a>
                             </p>
@@ -96,38 +96,40 @@ function initMap() {
                                 <a href="/alltag"><button class="btn btn-lg btn-primary " style="text-align: center;">Go Back </button></a>
                             </p>
                         </div>
-                    </div>
+                    <!-- </div> -->
                 </header>
-            </div>
+            <!-- </div> -->
                 
-            <% if(user.post){ %>
-                <% user.post.forEach(function(post){ %>
-                    <div class="col-lg-3 col-md-4 col-xs-12" style=" margin:1% 0% 1% 5.15%; padding: 1.2rem 1.2rem; ">
-            
-                        <div class="caption" style="text-align: center; color: dodgerblue;">
-                            <h3> <%= post.name %>  </h3>
-                        </div>
-            
-                        <div class="thumbnail">
-                            <img src="data:uploads/<%=post.image.contentType%>;base64, 
-                                <%=post.image.data.toString('base64')%>">
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div>
-                                    <a href="/alltag/tag/post/<%= post._id %> "><button class="btn btn-primary" style="text-align: center; margin:1% auto 1% auto;" >more</button></a>
+            <div class="container" style="float: left;">
+                <% if(user.post){ %>
+                    <% user.post.forEach(function(post){ %>
+                        <div class="col-lg-3 col-md-4 col-xs-12" style=" margin:1% 0% 1% 5.15%; padding: 1.2rem 1.2rem; ">
+                
+                            <div class="caption" style="text-align: center; color: dodgerblue;">
+                                <h3> <%= post.name %>  </h3>
+                            </div>
+                
+                            <div class="thumbnail">
+                                <img src="data:uploads/<%=post.image.contentType%>;base64, 
+                                    <%=post.image.data.toString('base64')%>">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div>
+                                        <a href="/alltag/tag/post/<%= post._id %> "><button class="btn btn-primary" style="text-align: center; margin:1% auto 1% auto;" >more</button></a>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div>
+                                    <p><em>Posted By : </em><%= post.author%> </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div>
-                                <p><em>Posted By : </em><%= post.author%> </p>
-                                </div>
-                            </div>
+                            
                         </div>
-                        
-                    </div>
-                <% }); %> 
-            <% } %> 
+                    <% }); %> 
+                <% } %> 
+            </div>
         </div>
     </div>
 </div>
