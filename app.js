@@ -134,6 +134,6 @@ app.use(otherRouts);
 // app.listen(process.env.PORT ,process.env.IP, function () {
 //     console.log("App listening on port 3000!");
 // });
-app.listen(3000, function () {
+app.listen(process.env.PORT ,process.env.IP, function () {
     console.log("App listening on port 3000!");
 });
