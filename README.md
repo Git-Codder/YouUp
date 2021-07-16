@@ -1,6 +1,6 @@
 # **YouUp**
 
-## Live Demo [Link](https://you--up.herokuapp.com/)
+## Live Demo (Currentely in maintaning phase soon will be avaiblable....) [Link](https://you--up.herokuapp.com/)
 This is major project which aim to provide a international platform to talented people & who didn't get enough support or not a stage to show their talent. 
 This project comes with grate features which all are around the main motive "Build You with You Up". all across the world can visit the site and perform all operation like an soical media platform with some cool feature. Account creation at site is free of cost. I welcomed to all of they visit site & make the best community of the world.
 
