@@ -6,26 +6,26 @@ This project comes with grate features which all are around the main motive "Bui
 
 ## YouUP Using Demo
 **1) Create an account**
-Go at the main page of the web app and at the top right corner will find Login or Signup link click on that and fill neccessary detail. 
+> Go at the main page of the web app and at the top right corner will find Login or Signup link click on that and fill neccessary detail. 
 
 
 **2) Post**
-After Creation an account can find a button new post in particaular tag or can go at global button their you have to fill all the required field of the post and click on submit. 
+> After Creation an account can find a button new post in particaular tag or can go at global button their you have to fill all the required field of the post and click on submit. 
 
 **3) Comment**
-To comment any Post you have to create first account and then go to particular post and will find their an comment section so comment their date and time automatically will added to your comment.
+> To comment any Post you have to create first account and then go to particular post and will find their an comment section so comment their date and time automatically will added to your comment.
 
 **4) Like**
-To upvote or support any cretor content you can like his or her post. but you can't like your creation or post.
+> To upvote or support any cretor content you can like his or her post. but you can't like your creation or post.
 
 **5) Trending** 
-To find the Trending content across the global can go to Trending button at the home page on upper left of tag options. click on that you find the trending post based on their like count on post.
+> To find the Trending content across the global can go to Trending button at the home page on upper left of tag options. click on that you find the trending post based on their like count on post.
 
 **6) Delete**
-To delete any post we can simply go at the delete button at own post and you will not be able see the active button at another creater post.
+> To delete any post we can simply go at the delete button at own post and you will not be able see the active button at another creater post.
 
 **7) Search**
-To search the any profile that you find somewhere can use the search bar at the top at home page where you enter profile name and click on submit. after submit you will redirect to creator profile page otherwise get a bad search request showing page.
+> To search the any profile that you find somewhere can use the search bar at the top at home page where you enter profile name and click on submit. after submit you will redirect to creator profile page otherwise get a bad search request showing page.
 
 ## YouUp Featurs
 - [X] Web Application with No-SQL Database. 
@@ -59,9 +59,9 @@ To search the any profile that you find somewhere can use the search bar at the 
 
 
 ## Future Goal 
-- [x] Make better UI design. 
-- [x] Create Contest or kind of any competition Sytem at YouUp.
-- [x] Make p2p messanging feature.
-- [x] Add more tags or cataogory. 
-- [x] Make more transparent and use of easiness for user.
-- [x] Improve response time and resolve all conflicts.
+- [ ] Make better UI design. 
+- [ ] Create Contest or kind of any competition Sytem at YouUp.
+- [ ] Make p2p messanging feature.
+- [ ] Add more tags or cataogory. 
+- [ ] Make more transparent and use of easiness for user.
+- [ ] Improve response time and resolve all conflicts.
