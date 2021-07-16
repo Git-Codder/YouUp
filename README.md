@@ -4,7 +4,7 @@
 This is major project which aim to provide a international platform to talented people & who didn't get enough support or not a stage to show their talent. 
 This project comes with grate features which all are around the main motive "Build You with You Up". all across the world can visit the site and perform all operation like an soical media platform with some cool feature. Account creation at site is free of cost. I welcomed to all of they visit site & make the best community of the world.
 
-## YouUP Using Demo
+## YouUP Using Instruction
 **1) Create an account**
 > Go at the main page of the web app and at the top right corner will find Login or Signup link click on that and fill neccessary detail. 
 
