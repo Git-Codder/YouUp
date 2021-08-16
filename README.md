@@ -1,8 +1,7 @@
 # **YouUp**
 
 ## Live Demo [Link](https://you--up.herokuapp.com/)
-This is major project which aim to provide a international platform to talented people & who didn't get enough support or not a stage to show their talent. 
-This project comes with great features which all are around the main motive "Build You with You Up". all across the world can visit the site and perform all operation like an soical media platform with some cool feature. Account creation at site is free of cost. I welcomed to all of they visit site & make the best community of the world.
+This is a major project which aims to provide an international platform to talented people & who didn't get enough support or not a stage to show their talent. This project comes with great features which all are around the main motive "Build You with You Up". all across the world can visit the site and perform all operations like a social media platform with some cool features. Account creation at the site is free of cost. I welcomed you all to visit the site & make the best community in the world.
 
 ## YouUP Using Instruction
 **1) Create an account**
